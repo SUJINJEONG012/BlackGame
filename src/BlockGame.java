@@ -54,14 +54,20 @@ public class BlockGame {
 			int x = 0;
 			int y = 0;
 			int width = BLOCK_WIDTH;
+			int height = BLOCK_HEIGHT;
+			int color = 0; // 0: white, 1: yellow, 2:blue, 3: mazanta, 4:red
+			boolean isHidden = false; //충돌후에 블록이 화면에서 사라지는 
 		}
 		
 		static class MyPanel  extends JPanel{
-			
+			//그리기 
 		}
 		
 		public MyFrame(String title) {
 			super(title);
+			this.setVisible(true);
+			this.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
+			this.setLocation(400,300);
 			
 		}
 		
