@@ -181,9 +181,9 @@ public class BlockGame {
 			timer = new Timer(20, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					movement();
-					checkCollision();
-					checkCollisionBlock();
+					movement(); //움직이는 
+					checkCollision(); //Wall, Bar 
+					checkCollisionBlock(); //Blocks 50
 					myPanel.repaint(); //Redrow
 				}
 			});
@@ -196,10 +196,71 @@ public class BlockGame {
 			}else if(bar.x > barXTarget) {
 				bar.x -= 5;
 			}
-		};
-		public void checkCollision(){
 			
+			if(dir == 0) { // Up-Right
+				ball.x += ballSpeed;
+				ball.y -= ballSpeed;
+			}else if(dir == 1) { // Down-Right
+				ball.x += ballSpeed;
+				ball.y += ballSpeed;
+			}else if(dir == 2) { // Up-Left
+				ball.x -= ballSpeed;
+				ball.y -= ballSpeed;
+			}else if(dir == 3) { // Down-Left
+				ball.x -= ballSpeed;
+				ball.y += ballSpeed;
+			}
 		};
+		
+		public void checkCollision(){
+			if(dir == 0) { // Up-Right
+				//벽에 충돌됐을때 
+				if(ball.y < 0 ) {
+					dir = 1;
+				}
+				
+				
+				if(ball.x > CANVAS_WIDTH-BALL_WIDTH) { //wall right
+					dir =2;
+				}
+				
+				//Bar none
+				
+			}else if(dir == 1) { // Down-Right
+				//벽에 충돌됐을때 
+				if(ball.y > CANVAS_HEIGHT-BALL_HEIGHT - BALL_HEIGHT) { //wall bottom
+					dir = 0;
+				}
+				if(ball.x > CANVAS_WIDTH-BALL_WIDTH) { //wall 
+					dir =3; //방향이 꺾이도록
+				}
+				
+				
+				
+			}else if(dir == 2) { // Up-Left
+				//wall
+				if(ball.y < 0 ) {
+					dir = 3;
+				}
+				if(ball.x < 0 ) {
+					dir = 0;
+				}
+				
+				//bar
+				
+			}else if(dir == 3) { // Down-Left
+				//wall
+				
+				if(ball.y > CANVAS_HEIGHT-BALL_HEIGHT - BALL_HEIGHT) { //wall bottom
+					dir = 2;
+				}
+				if(ball.x < 0 ) { //wall left
+					dir = 1;
+				}
+			}
+		};
+		
+		
 		public void checkCollisionBlock(){
 			
 		};
