@@ -88,8 +88,15 @@ public class BlockGame {
 						}else if(blocks[i][j].color ==4) {
 							g2d.setColor(Color.RED);
 						}
+						g2d.fillRect(blocks[i][j].x ,blocks[i][j].y, blocks[i][j].width, blocks[i][j].height);
 						
 					}
+					
+					//draw score
+					g2d.setColor(Color.WHITE);
+					g2d.setFont(new Font("TimeRoman", Font.BOLD, 20));
+					g2d.drawString("score : " + score, CANVAS_WIDTH/2 - 30, 20);
+					
 				}
 				
 			}
