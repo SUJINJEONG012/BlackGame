@@ -51,12 +51,48 @@ public class BlockGame {
 			int y = 0;
 			int width = BLOCK_WIDTH;
 			int height = BLOCK_HEIGHT;
-			int color = 0; // 0: white, 1: yellow, 2:blue, 3: mazanta, 4:red
+			int color = 0; // 0: white, 1: yellow, 2:blue, 3: mazenta, 4:red
 			boolean isHidden = false; // 충돌후에 블록이 화면에서 사라지는
 		}
 
 		static class MyPanel extends JPanel {
-			// 그리기
+			//생성자
+			public MyPanel() {
+				this.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
+				this.setBackground(Color.BLACK);
+			}
+			@Override
+			public void paint(Graphics g) {
+				super.paint(g);
+				Graphics2D g2d = (Graphics2D)g;
+				
+				drawUI(g2d);
+			}
+			
+			private void drawUI(Graphics2D g2d) {
+				//draw Blocks
+				
+				for(int i = 0; i < BLOCK_ROWS; i++) {
+					for(int j = 0; j<BLOCK_COLUMNS; j++) {
+						if(blocks[i][j].isHidden) {
+							continue;
+						}
+						if(blocks[i][j].color == 0) {
+							g2d.setColor(Color.WHITE);
+						}else if(blocks[i][j].color ==1) {
+							g2d.setColor(Color.YELLOW);
+						}else if(blocks[i][j].color == 2) {
+							g2d.setColor(Color.BLUE);
+						}else if(blocks[i][j].color ==3) {
+							g2d.setColor(Color.MAGENTA);
+						}else if(blocks[i][j].color ==4) {
+							g2d.setColor(Color.RED);
+						}
+						
+					}
+				}
+				
+			}
 		}
 
 		public MyFrame(String title) {
