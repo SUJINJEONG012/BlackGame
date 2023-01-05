@@ -17,16 +17,57 @@ public class BlockGame {
 		static int BLOCK_GAP = 3;
 		static int BAR_WIDTH = 80;
 		static int BAR_HEIGHT = 20;
+		static int CANVAS_WIDTH = 400 + (BLOCK_GAP * BLOCK_COLUMNS) - BLOCK_GAP;
+		static int CANVAS_HEIGHT = 600;
+		
 		
 		
 		//variable(변수지정)
+		static MyPanel myPanel = null;
+		static int score = 0;
+		static Timer time = null;
+		static Block[][] blocks  = new Block [BLOCK_ROWS][BLOCK_COLUMNS]; //세로,가로 
+		static Bar bar = new Bar();
+		static Ball ball = new Ball();
+		static int barXTarget = bar.x; //Target Value - interpolation
+		static int dir = 0; // 0: Up-Right  / 1: Down-Right  / 2 : Up-left 3: Down-Left
+		static int ballSpeed = 5;
 		
+		
+		//초기화 
+		static class Ball{
+			int x = CANVAS_WIDTH / 2 - BALL_WIDTH / 2 ; 
+			int y = CANVAS_HEIGHT / 2 - BALL_HEIGHT / 2 ;
+			int width = BALL_WIDTH;
+			int height = BALL_HEIGHT;
+		}
+		
+		
+		static class Bar{
+			int x = CANVAS_WIDTH / 2 -BAR_WIDTH/2; 
+			int y = CANVAS_HEIGHT - 100;
+			int width = BAR_WIDTH;
+			int height = BAR_HEIGHT;
+		}
+		
+		static class Block{
+			int x = 0;
+			int y = 0;
+			int width = BLOCK_WIDTH;
+		}
+		
+		static class MyPanel  extends JPanel{
+			
+		}
 		
 		public MyFrame(String title) {
 			super(title);
 			
 		}
+		
 	}
+	
+	
 	
 	
 	public static void main(String[] args) {
